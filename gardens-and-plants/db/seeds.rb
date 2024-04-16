@@ -1,0 +1,42 @@
+puts "Cleaning up the db"
+Garden.destroy_all if Rails.env.development?
+
+puts "Deleted all gardens"
+
+little = Garden.create!(
+  name: "My Little Garden",
+  banner_url: "https://raw.githubusercontent.com/lewagon/fullstack-images/master/rails/parks-and-plants/garden_1.jpg"
+)
+
+other = Garden.create!(
+  name: "My Other Garden",
+  banner_url: "https://raw.githubusercontent.com/lewagon/fullstack-images/master/rails/parks-and-plants/garden_2.jpg"
+)
+
+puts "Created #{Garden.count} gardens"
+
+Plant.create!(
+  name: "Monstera",
+  image_url: "https://raw.githubusercontent.com/lewagon/fullstack-images/master/rails/parks-and-plants/plants/monstera.jpg",
+  garden: little
+)
+
+Plant.create!(
+  name: "Philo",
+  image_url: "https://raw.githubusercontent.com/lewagon/fullstack-images/master/rails/parks-and-plants/plants/philo.jpg",
+  garden: little
+)
+
+Plant.create!(
+  name: "Dieff",
+  image_url: "https://raw.githubusercontent.com/lewagon/fullstack-images/master/rails/parks-and-plants/plants/dieffenbachia.jpg",
+  garden: other
+)
+
+puts "Created #{Plant.count} gardens"
+
+
+Tag.create!(name: "Sensitive")
+Tag.create!(name: "Poisonous")
+Tag.create!(name: "Outdoor")
+Tag.create!(name: "Water often!!")

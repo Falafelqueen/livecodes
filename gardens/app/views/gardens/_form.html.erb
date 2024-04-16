@@ -1,0 +1,27 @@
+<%= form_with(model: garden) do |form| %>
+  <% if garden.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(garden.errors.count, "error") %> prohibited this garden from being saved:</h2>
+
+      <ul>
+        <% garden.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :banner_url, style: "display: block" %>
+    <%= form.text_field :banner_url %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

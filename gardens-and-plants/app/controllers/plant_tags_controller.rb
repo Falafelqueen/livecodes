@@ -1,0 +1,29 @@
+class PlantTagsController < ApplicationController
+  def new
+    @plant = Plant.find(params[:plant_id])
+    @plant_tag = PlantTag.new
+  end
+
+  def create
+    @plant_tag = PlantTag.new(plant_tag_params)
+    @plant =  Plant.find(params[:plant_id])
+    @plant_tag.plant = @plant
+    if @plant_tag.save
+      redirect_to garden_path(@plant.garden)
+    else
+      render :new, status: 422
+    end
+  end
+
+  def destroy
+    @plant_tag = PlantTag.find(params[:id])
+    @plant_tag.destroy
+    redirect_to garden_path(@plant_tag.plant.garden)
+  end
+
+  private
+
+  def plant_tag_params
+    params.require(:plant_tag).permit(:tag_id)
+  end
+end

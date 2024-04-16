@@ -1,0 +1,18 @@
+<div class="container">
+
+  <h1>Found pet: <%= @pet.name %></h1>
+  <% if @pet.species == "cat" %>
+    <p>🐱</p>
+  <% elsif @pet.species == "dog" %>
+    <p>🐶</p>
+  <% else  %>
+    <p>🐙</p>
+  <% end %>
+
+  <p><%= @pet.date_found %></p>
+  <p><%= @pet.age %></p>
+
+  <%= link_to "Back to all pets", pets_path %>
+  <%= link_to "Edit", edit_pet_path(@pet)  %>
+  <%= link_to "Delete", pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Really? It is soo cute"} %>
+</div>

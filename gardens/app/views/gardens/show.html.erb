@@ -1,0 +1,55 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @garden.banner_url %>);">
+  <div class="container">
+    <h1><%= @garden.name %></h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="cards mt-2">
+    <%# Showing all the plants that belong to this garden %>
+    <% @garden.plants.each_with_index do |plant, index| %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= plant.image_url %>);">
+        <p><%= plant.name %></p>
+        <%= link_to "X", plant_path(plant), data: {turbo_method: :delete} %>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= "#{index}" %>">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="card-tags">
+          <% plant.tags.each do |tag| %>
+            <span><%= tag.name %></span>
+          <% end %>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal<%= "#{index}" %>" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <%= simple_form_for [plant, @plant_tag] do |f| %>
+                  <%= f.association :tag %>
+                  <%= f.submit %>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <i class="fa-solid fa-plus"></i> Create new plant
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
