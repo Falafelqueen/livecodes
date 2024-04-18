@@ -8,10 +8,10 @@
 // click
 // sumbit
 // scroll
-// zoom (resize)
+// zoom
 // mouseover
-// mousein
-// mouseout
+// mouse-in
+// mouse-out
 // focus
 // blur (defocus)
 // change
