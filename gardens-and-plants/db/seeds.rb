@@ -1,7 +1,8 @@
-puts "Cleaning up the db"
-Garden.destroy_all if Rails.env.development?
 
-puts "Deleted all gardens"
+puts "cleaning up the db"
+Garden.destroy_all if Rails.env.development?
+Plant.destroy_all if Rails.env.development?
+Tag.destroy_all if Rails.env.development?
 
 little = Garden.create!(
   name: "My Little Garden",
@@ -12,8 +13,6 @@ other = Garden.create!(
   name: "My Other Garden",
   banner_url: "https://raw.githubusercontent.com/lewagon/fullstack-images/master/rails/parks-and-plants/garden_2.jpg"
 )
-
-puts "Created #{Garden.count} gardens"
 
 Plant.create!(
   name: "Monstera",
@@ -33,10 +32,6 @@ Plant.create!(
   garden: other
 )
 
-puts "Created #{Plant.count} gardens"
-
-
-Tag.create!(name: "Sensitive")
-Tag.create!(name: "Poisonous")
-Tag.create!(name: "Outdoor")
-Tag.create!(name: "Water often!!")
+Tag.create!(name: "tropical")
+Tag.create!(name: "non-tropical")
+Tag.create!(name: "thristy")

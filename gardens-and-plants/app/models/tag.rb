@@ -1,4 +1,5 @@
 class Tag < ApplicationRecord
-  has_many :plant_tags
-  has_many :plants, through: :plant_tags
+
+  # add some validations
+  validates :name, presence: true, uniqueness: true
 end

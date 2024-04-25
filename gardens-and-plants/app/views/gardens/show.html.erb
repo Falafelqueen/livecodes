@@ -10,14 +10,14 @@
       <div class="col-4">
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= plant.image_url %>')">
           <%= plant.name %>
-          <%= link_to "Tag",  new_plant_plant_tag_path(plant)  %>
           <%= link_to "+", plant_path(plant), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "card-remove-link" %>
           <div class="card-tags">
-            <%  plant.tags.each do |tag| %>
-              <% plant_tag = PlantTag.find_by(plant: plant, tag: tag) %>
-              <span><%= tag.name  %></span>
-              <%= link_to "X", plant_tag_path(plant_tag), data: {turbo_method: :delete}  %>
+            <% plant.tags.each do |tag| %>
+              <span>
+                <%= tag.name %>
+              </span>
             <% end %>
+            <%= link_to "+ Tag", new_plant_plant_tag_path(plant)%>
           </div>
         </div>
       </div>
