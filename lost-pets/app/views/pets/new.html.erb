@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Create new pet🐻‍❄️🐨🐣</h1>
+
+  <%#= form_with model: @pet do |f| %>
+    <%#= f.label :name %>
+    <%#= f.text_field :name %>
+
+    <%#= f.label :species %>
+    <%#= f.select :species, collection: Pet::SPECIES %>
+
+    <%#= f.label :found_on %>
+    <%#= f.date_field :found_on %>
+
+    <%#= f.submit 'Add new pet' %>
+  <%# end %>
+  <%= render 'form', pet: @pet %>
+
+<%= link_to 'Back to all animals', pets_path %>
+</div>
