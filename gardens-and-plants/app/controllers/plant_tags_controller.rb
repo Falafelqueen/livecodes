@@ -1,19 +1,18 @@
 class PlantTagsController < ApplicationController
-
   def new
-    @plant = Plant.find(params[:plant_id])
     @plant_tag = PlantTag.new
+    @plant = Plant.find(params[:plant_id])
   end
 
   def create
-    # PlantTag.new(plant: plant, tag: tag)
-    @plant = Plant.find(params[:plant_id])
     @plant_tag = PlantTag.new(plant_tag_params)
+    @plant = Plant.find(params[:plant_id])
     @plant_tag.plant = @plant
+
     if @plant_tag.save
       redirect_to garden_path(@plant.garden)
     else
-      render :new, status: 422
+      render :new, status: :unprocessable_entity
     end
   end
 

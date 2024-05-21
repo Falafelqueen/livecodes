@@ -3,6 +3,7 @@
   background-position: center;
   height: 180px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
@@ -38,7 +39,6 @@
 }
 
 .card-tags {
-  position: absolute;
   bottom: 8px;
   left: 8px;
   width: 80%;

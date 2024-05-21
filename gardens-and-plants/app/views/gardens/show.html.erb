@@ -9,16 +9,41 @@
     <% @garden.plants.each do |plant| %>
       <div class="col-4">
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= plant.image_url %>')">
+        <div>
           <%= plant.name %>
           <%= link_to "+", plant_path(plant), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "card-remove-link" %>
-          <div class="card-tags">
-            <% plant.tags.each do |tag| %>
-              <span>
-                <%= tag.name %>
-              </span>
-            <% end %>
-            <%= link_to "+ Tag", new_plant_plant_tag_path(plant)%>
+        </div>
+        <div class="card-tags">
+          <% plant.tags.each do |tag| %>
+              <span><%= tag.name %></span>
+          <% end %>
+        </div>
+          <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= plant.id %>">
+          +
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal<%= plant.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <%= simple_form_for [plant, @plant_tag] do |f| %>
+                  <%= f.association :tag %>
+                  <%= f.submit %>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
           </div>
+        </div>
         </div>
       </div>
     <% end %>
