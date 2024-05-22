@@ -9,7 +9,6 @@ class GardensController < ApplicationController
   # GET /gardens/1
   def show
     @plant = Plant.new
-    @plant_tag = PlantTag.new
   end
 
   # GET /gardens/new

@@ -1,4 +1,11 @@
+
+puts "Cleaning up the db..."
 Garden.destroy_all if Rails.env.development?
+
+Tag.destroy_all
+
+
+puts "Creating new ..."
 
 little = Garden.create!(
   name: "My Little Garden",
@@ -29,7 +36,7 @@ Plant.create!(
 )
 
 
-tags = ["indoor", "thirsty", "sunny", "outdoor", "sick"]
+tags = ["indoor", "thirsty", "sunny", "outdoor", "sick", "overwatered", "dead"]
 
 tags.each do |tag|
   Tag.create!(name: tag)

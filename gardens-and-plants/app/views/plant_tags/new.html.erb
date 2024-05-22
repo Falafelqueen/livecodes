@@ -1,7 +1,8 @@
-<h1>PlantTags#new</h1>
-
 <div class="container">
-  <%= simple_form_for [@plant, @plant_tag] do |f| %>
+  <h1>Tag a plant</h1>
+
+  <%= simple_form_for [@plant,@plant_tag] do |f| %>
+    <%#= f.input :tag, collection: Tag.all, value_method: :id, label_method: :name %>
     <%= f.association :tag %>
     <%= f.submit %>
   <% end %>

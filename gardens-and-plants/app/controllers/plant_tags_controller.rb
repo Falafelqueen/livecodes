@@ -1,4 +1,5 @@
 class PlantTagsController < ApplicationController
+
   def new
     @plant_tag = PlantTag.new
     @plant = Plant.find(params[:plant_id])
@@ -12,7 +13,7 @@ class PlantTagsController < ApplicationController
     if @plant_tag.save
       redirect_to garden_path(@plant.garden)
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity #422
     end
   end
 
