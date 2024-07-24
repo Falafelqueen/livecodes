@@ -1,8 +1,0 @@
-<h1>Here are all the found pets</h1>
-<% @pets.each do |pet| %>
-  <%= pet.name %>
-  <%= pet.species %>
-  <%= pet.age %>
-  <%= pet.date_found %>
-  <%= link_to "See little pet", pet_path(pet) %>
-<% end %>

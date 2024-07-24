@@ -1,8 +1,0 @@
-<h1>Tag your plant: <%=  @plant.name %> in <%= @plant.garden.name %></h1>
-
-<%= simple_form_for [@plant, @plant_tag] do |f| %>
-  <%= f.association :tag %>
-  <%= f.submit %>
-<% end %>
-
-<%#= f.select :tag, collection: Tag.all %>

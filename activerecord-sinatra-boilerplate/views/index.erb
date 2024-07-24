@@ -1,8 +1,0 @@
-<%# embedded Ruby  %>
-<h1>All restaurants</h1>
-
-<ul>
-  <% @restaurants.each do |restaurant| %>
-    <li><a href=<%="/restaurants/#{restaurant.id}"%>><%= restaurant.name %></a></li>
-  <% end %>
-</ul>
