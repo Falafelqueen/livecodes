@@ -1,0 +1,14 @@
+<h1><%= @pet.name %>
+  <% if @pet.species == "dog" %>
+    🐶
+  <% elsif @pet.species == "cat" %>
+    🐱
+  <% else %>
+    🦕
+  <% end %>
+</h1>
+<%= @pet.age %>
+<%= @pet.gender %>
+<%= @pet.found_on %>
+<p>Injured? <%= @pet.injured ? "😢" : "🥳"%></p>
+<%= link_to 'Delete', pet_path(@pet),data: {turbo_method: :delete, turbo_confirm: 'Really?'}  %>
