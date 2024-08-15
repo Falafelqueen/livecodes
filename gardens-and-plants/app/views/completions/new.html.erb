@@ -1,0 +1,5 @@
+<h1>Create a new chore for the <%= @plant.name %></h1>
+<%= simple_form_for [@plant, @completion] do |f| %>
+  <%= f.association :chore %>
+  <%= f.button :submit %>
+<% end %>

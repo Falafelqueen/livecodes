@@ -1,0 +1,43 @@
+<%= render @garden %>
+<div class="container py-3">
+  <div class="row gap-2 mb-3">
+    <% @garden.plants.each do |plant| %>
+      <div class="card-category col-3 " style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= plant.image_url %>)">
+        <%= plant.name %>
+        <%= link_to 'x', plant_path(plant), data: {turbo_method: :delete, turbo_confirm: 'Sure??'}, class: 'card-remove-link' %>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="<%= "#exampleModal#{plant.id}" %>">
+          Create chore
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="<%= "exampleModal#{plant.id}" %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <%= simple_form_for [plant, @completion] do |f| %>
+                  <%= f.association :chore %>
+                  <%= f.button :submit %>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chores">
+          <% plant.completions.each do |completion| %>
+            <%= completion.chore.name %>
+            <%= link_to 'X', completion_path(completion), data: {turbo_method: :delete} %>
+          <% end  %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to '+Add new plant', new_garden_plant_path(@garden), class: 'btn btn-primary'  %>
+</div>
+</div>
